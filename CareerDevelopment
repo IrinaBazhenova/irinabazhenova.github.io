@@ -1,0 +1,111 @@
+<div class="lang-switch">
+#ruRU</a>
+#enEN</a>
+</div>
+
+<style>
+.lang-switch {
+display: inline-flex;
+background: #f3f4f6;
+border-radius: 999px;
+padding: 4px;
+gap: 4px;
+margin-bottom: 16px;
+}
+
+.lang-switch .lang {
+padding: 8px 16px;
+border-radius: 999px;
+text-decoration: none;
+font-size: 14px;
+font-weight: 600;
+color: #666;
+transition: all 0.2s ease;
+min-width: 48px;
+text-align: center;
+}
+
+.lang-switch .lang.active {
+background: #ffffff;
+color: #111827;
+box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+
+@media (max-width: 768px) {
+.lang-switch {
+width: 100%;
+display: flex;
+}
+
+.lang-switch .lang {
+flex: 1;
+padding: 12px 0;
+font-size: 15px;
+}
+}
+</style>
+Если нужен рабочий переключатель, который показывает и скрывает русскую и английскую версии текста без перезагрузки страницы, рекомендую такой вариант:
+<div class="language-toggle">
+<button class="active" onclick="showLang('ru')">RU</button>
+<button onclick="showLang('en')">EN</button>
+</div>
+
+<div id="ru" class="lang-content">
+Русская версия текста
+</div>
+
+<div id="en" class="lang-content" style="display:none;">
+English version of the text
+</div>
+
+<style>
+.language-toggle {
+display: flex;
+width: fit-content;
+background: #f3f4f6;
+border-radius: 24px;
+padding: 4px;
+margin-bottom: 20px;
+}
+
+.language-toggle button {
+border: 0;
+background: transparent;
+padding: 10px 18px;
+border-radius: 20px;
+cursor: pointer;
+font-weight: 600;
+min-width: 56px;
+}
+
+.language-toggle button.active {
+background: #fff;
+box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+@media (max-width: 768px) {
+.language-toggle {
+width: 100%;
+}
+
+.language-toggle button {
+flex: 1;
+padding: 12px;
+}
+}
+</style>
+
+<script>
+function showLang(lang) {
+document.getElementById('ru').style.display =
+lang === 'ru' ? 'block' : 'none';
+
+document.getElementById('en').style.display =
+lang === 'en' ? 'block' : 'none';
+
+document.querySelectorAll('.language-toggle button')
+.forEach(btn => btn.classList.remove('active'));
+
+event.target.classList.add('active');
+}
+</script>
